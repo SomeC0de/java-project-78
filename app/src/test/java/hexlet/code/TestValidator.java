@@ -1,12 +1,18 @@
 package hexlet.code;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 
 public final class TestValidator {
+    private Validator v;
+    @BeforeEach
+    void setup() {
+        v = new Validator();
+    }
+
     @Test
-    public void dummyTest() {
-        assertEquals(true, true);
+    void string() {
+        Assertions.assertInstanceOf(StringSchema.class, v.string());
     }
 }
