@@ -10,13 +10,16 @@ public final class TestStringSchema {
         Validator v = new Validator();
         StringSchema schema = v.string();
 
+        assertThat(schema.isValid(null)).isTrue();
         assertThat(schema.isValid("")).isTrue();
 
         schema.required();
-        assertThat(schema.isValid("what does the fox say")).isTrue();
-        assertThat(schema.isValid("hexlet")).isTrue();
+
         assertThat(schema.isValid("")).isFalse();
         assertThat(schema.isValid(null)).isFalse();
+
+        assertThat(schema.isValid("what does the fox say")).isTrue();
+        assertThat(schema.isValid("hexlet")).isTrue();
 
         schema.minLength(7);
         assertThat(schema.isValid("what does the fox say")).isTrue();
