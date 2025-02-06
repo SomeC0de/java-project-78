@@ -32,19 +32,19 @@ public class StringSchema {
     public StringSchema required() {
         this.isRequired = true;
 
-        Predicate<String> requiredScheme = str-> str != null && !str.isEmpty();
+        Predicate<String> requiredScheme = str -> str != null && !str.isEmpty();
         tests.add(requiredScheme);
         return this;
     }
 
     public StringSchema minLength(int length) {
-        Predicate<String> lengthScheme = str-> str.length() >= length;
+        Predicate<String> lengthScheme = str -> str.length() >= length;
         tests.add(lengthScheme);
         return this;
     }
 
     public StringSchema contains(String sample) {
-        Predicate<String> containsScheme = str-> str.contains(sample);
+        Predicate<String> containsScheme = str -> str.contains(sample);
         tests.add(containsScheme);
         return this;
     }
