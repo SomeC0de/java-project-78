@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-// TBD: required(), minLength() and contains() are all TESTS functions, isValid() is trigger to each function and
-//      we need a storage, which accumulates every TEST that will be performed. After tests are accumulated they all
-//      executes inside stream in isValid().
 public class StringSchema {
     private boolean isRequired = false;
     List<Predicate<String>> tests = new ArrayList<>();
