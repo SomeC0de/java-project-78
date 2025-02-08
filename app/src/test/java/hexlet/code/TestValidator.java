@@ -15,4 +15,9 @@ public final class TestValidator {
     void string() {
         Assertions.assertInstanceOf(StringSchema.class, v.string());
     }
+
+    @Test
+    void number() {
+        Assertions.assertInstanceOf(NumberSchema.class, v.number());
+    }
 }
