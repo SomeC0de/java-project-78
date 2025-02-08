@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public class StringSchema {
+public class StringSchema extends BaseSchema {
     private boolean isRequired = false;
     List<Predicate<String>> tests = new ArrayList<>();
 
@@ -46,7 +46,8 @@ public class StringSchema {
         return this;
     }
 
-    private boolean isInvalidDefault(String s) {
-        return s == null || s.isEmpty();
+    @Override
+    protected boolean isInvalidDefault(Object obj) {
+        return ((obj instanceof String) || ((String)obj).isEmpty());
     }
 }

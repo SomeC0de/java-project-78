@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-public class NumberSchema {
+public class NumberSchema extends BaseSchema {
     private boolean isRequired = false;
     List<Predicate<Integer>> tests = new ArrayList<>();
 
@@ -48,7 +48,8 @@ public class NumberSchema {
         return this;
     }
 
-    private boolean isInvalidDefault(Integer val) {
-        return !(val instanceof Integer);
+    @Override
+    protected boolean isInvalidDefault(Object obj) {
+        return !(obj instanceof Integer);
     }
 }
