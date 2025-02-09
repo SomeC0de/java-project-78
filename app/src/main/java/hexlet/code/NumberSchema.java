@@ -6,50 +6,22 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 public class NumberSchema extends BaseSchema {
-    private boolean isRequired = false;
-    List<Predicate<Integer>> tests = new ArrayList<>();
-
-    public NumberSchema() {
-        this.isRequired = false;
-    }
-
-    public boolean isValid(Integer input) {
-        if (!this.isRequired && isInvalidDefault(input)) {
-            return true;
-        }
-
-        for (var verification : tests) {
-            if (!verification.test(input)) {
-                return false;
-            }
-        }
-
-        return true;
-    }
-
     public NumberSchema required() {
-        this.isRequired = true;
-
-        Predicate<Integer> requiredScheme = val -> val instanceof Integer;
-        tests.add(requiredScheme);
+        Predicate<Object> requiredScheme = val -> val instanceof Integer;
+        super.addVerificator(requiredScheme);
         return this;
     }
 
     public NumberSchema positive() {
-        Predicate<Integer> positiveScheme = val
+        Predicate<Object> positiveScheme = val
                 -> Objects.isNull(val) || (val instanceof Integer && ((Integer) val) > 0);
-        tests.add(positiveScheme);
+        super.addVerificator(positiveScheme);
         return this;
     }
 
     public NumberSchema range(Integer lowLim, Integer highLim) {
-        Predicate<Integer> rangeScheme = val -> (val <= highLim) && (val >= lowLim);
-        tests.add(rangeScheme);
+        Predicate<Object> rangeScheme = val -> ((Integer) val) <= highLim && ((Integer) val) >= lowLim;
+        this.addVerificator(rangeScheme);
         return this;
-    }
-
-    @Override
-    protected boolean isInvalidDefault(Object obj) {
-        return !(obj instanceof Integer);
     }
 }
