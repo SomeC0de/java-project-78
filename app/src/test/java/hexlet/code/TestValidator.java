@@ -20,4 +20,9 @@ public final class TestValidator {
     void number() {
         Assertions.assertInstanceOf(NumberSchema.class, v.number());
     }
+
+    @Test
+    void map() {
+        Assertions.assertInstanceOf(MapSchema.class, v.map());
+    }
 }
