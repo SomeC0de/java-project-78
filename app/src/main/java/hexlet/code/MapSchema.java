@@ -1,5 +1,6 @@
 package hexlet.code;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 
@@ -15,4 +16,16 @@ public class MapSchema extends BaseSchema {
         super.addVerificator(sizeofScheme);
         return this;
     }
+
+    public MapSchema shape(Map<String, BaseSchema<String>> schemesSet) {
+        Predicate<Object> shapeScheme = mapToVerify -> {
+            schemesSet.keySet().stream().map(key -> {
+                schemesSet.get(key).isValid((String) ((Map) mapToVerify).get(key));
+            }).allMatch(isValid -> isValid);
+        };
+    }
+
+
+    super.addVerificator(shapeScheme);
+    return this;
 }

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
-public abstract class BaseSchema {
-    List<Predicate<Object>> tests = new ArrayList<>();
+public abstract class BaseSchema<S> {
+    List<Predicate<S>> tests = new ArrayList<>();
 
-    public boolean isValid(Object input) {
+    public boolean isValid(S input) {
         for (var verification : tests) {
             if (!verification.test(input)) {
                 return false;
@@ -17,7 +17,7 @@ public abstract class BaseSchema {
         return true;
     }
 
-    public void addVerificator(Predicate<Object> verificator) {
+    public void addVerificator(Predicate<S> verificator) {
         tests.add(verificator);
     }
 }
