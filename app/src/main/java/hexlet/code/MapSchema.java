@@ -19,13 +19,11 @@ public class MapSchema extends BaseSchema {
 
     public MapSchema shape(Map<String, BaseSchema<String>> schemesSet) {
         Predicate<Object> shapeScheme = mapToVerify -> {
-            schemesSet.keySet().stream().map(key -> {
-                schemesSet.get(key).isValid((String) ((Map) mapToVerify).get(key));
-            }).allMatch(isValid -> isValid);
+            return schemesSet.keySet().stream().map(key -> schemesSet.get(key).isValid(
+                    (String) ((Map<?, ?>) mapToVerify).get(key))).allMatch(isValid -> isValid);
         };
+
+        super.addVerificator(shapeScheme);
+        return this;
     }
-
-
-    super.addVerificator(shapeScheme);
-    return this;
 }
