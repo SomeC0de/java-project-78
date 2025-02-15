@@ -1,6 +1,5 @@
 package hexlet.code;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 
