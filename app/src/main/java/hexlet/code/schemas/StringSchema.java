@@ -1,4 +1,4 @@
-package hexlet.code;
+package hexlet.code.schemas;
 import java.util.function.Predicate;
 
 public class StringSchema extends BaseSchema {
