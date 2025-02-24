@@ -1,14 +1,14 @@
 package hexlet.code.schemas;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
+import java.util.LinkedHashMap;
 import java.util.function.Predicate;
 
 public abstract class BaseSchema<S> {
-    List<Predicate<S>> tests = new ArrayList<>();
+    Map<String, Predicate<S>> tests = new LinkedHashMap<>();
 
     public boolean isValid(S input) {
-        for (var verification : tests) {
+        for (var verification : tests.values()) {
             if (!verification.test(input)) {
                 return false;
             }
@@ -17,7 +17,7 @@ public abstract class BaseSchema<S> {
         return true;
     }
 
-    public void addVerificator(Predicate<S> verificator) {
-        tests.add(verificator);
+    public void addVerificator(String id, Predicate<S> verificator) {
+        tests.put(id, verificator);
     }
 }

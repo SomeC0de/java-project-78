@@ -6,13 +6,13 @@ import java.util.function.Predicate;
 public final class MapSchema extends BaseSchema<Map> {
     public MapSchema required() {
         Predicate<Map> requiredScheme = val -> val instanceof Map;
-        super.addVerificator(requiredScheme);
+        super.addVerificator("required", requiredScheme);
         return this;
     }
 
     public MapSchema sizeof(int mapSize) {
         Predicate<Map> sizeofScheme = val -> (val instanceof Map) && (((Map<?, ?>) val).size() == mapSize);
-        super.addVerificator(sizeofScheme);
+        super.addVerificator("sizeof", sizeofScheme);
         return this;
     }
 
@@ -22,7 +22,7 @@ public final class MapSchema extends BaseSchema<Map> {
                     (String) ((Map<?, ?>) mapToVerify).get(key))).allMatch(isValid -> isValid);
         };
 
-        super.addVerificator(shapeScheme);
+        super.addVerificator("shape", shapeScheme);
         return this;
     }
 }
