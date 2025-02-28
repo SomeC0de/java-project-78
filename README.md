@@ -35,6 +35,7 @@ assertThat(schema.isValid(null)).isFalse();
 
 assertThat(schema.isValid("what does the fox say")).isTrue();
 assertThat(schema.isValid("hexlet")).isTrue();
+schema.shape(schemas);
 
 schema.minLength(7);
 assertThat(schema.isValid("what does the fox say")).isTrue();
