@@ -25,6 +25,7 @@ public class TestNumberSchema {
 
         assertThat(schema.isValid(5)).isTrue();
         assertThat(schema.isValid(10)).isTrue();
+        assertThat(schema.isValid(8)).isTrue();
         assertThat(schema.isValid(4)).isFalse();
         assertThat(schema.isValid(11)).isFalse();
     }
