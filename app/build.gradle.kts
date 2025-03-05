@@ -1,13 +1,8 @@
 plugins {
     checkstyle
-    application
     jacoco
     id("java")
     id("com.adarshr.test-logger") version "4.0.0"
-}
-
-application {
-    mainClass = "hexlet.code.App"
 }
 
 group = "hexlet.code"
