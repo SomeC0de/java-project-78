@@ -13,11 +13,16 @@ public final class TestStringSchema {
 
         assertThat(schema.isValid(null)).isTrue();
         assertThat(schema.isValid("")).isTrue();
+        assertThat(schema.contains("").isValid("")).isTrue();
 
         schema.required();
 
         assertThat(schema.isValid("")).isFalse();
         assertThat(schema.isValid(null)).isFalse();
+
+        schema.minLength(0);
+        assertThat(schema.isValid("")).isFalse();
+        assertThat(schema.contains("").isValid("")).isFalse();
 
         assertThat(schema.isValid("what does the fox say")).isTrue();
         assertThat(schema.isValid("hexlet")).isTrue();
