@@ -3,8 +3,10 @@ import java.util.function.Predicate;
 
 public final class StringSchema extends BaseSchema<String> {
     public StringSchema required() {
-        Predicate<String> requiredScheme = str -> str instanceof String && !((String) str).isEmpty();
+        Predicate<String> requiredScheme = str -> !str.isEmpty();
         super.addVerificator("required", requiredScheme);
+        super.enableTests();
+
         return this;
     }
 

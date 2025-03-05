@@ -5,13 +5,12 @@ import java.util.function.Predicate;
 
 public final class MapSchema extends BaseSchema<Map> {
     public MapSchema required() {
-        Predicate<Map> requiredScheme = val -> val instanceof Map;
-        super.addVerificator("required", requiredScheme);
+        super.enableTests();
         return this;
     }
 
     public MapSchema sizeof(int mapSize) {
-        Predicate<Map> sizeofScheme = val -> (val instanceof Map) && (((Map<?, ?>) val).size() == mapSize);
+        Predicate<Map> sizeofScheme = val -> ((Map<?, ?>) val).size() == mapSize;
         super.addVerificator("sizeof", sizeofScheme);
         return this;
     }
