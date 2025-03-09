@@ -6,15 +6,15 @@ import java.util.function.Predicate;
 
 public abstract class BaseSchema<S> {
     private final Map<String, Predicate<S>> tests = new LinkedHashMap<>();
-    private boolean isTest = false;
+    private boolean isRequired = false;
 
-    public final void enableTests() {
-        this.isTest = true;
+    public final void setRequired() {
+        this.isRequired = true;
     }
 
     public final boolean isValid(S input) {
         if (input == null) {
-            return !this.isTest;
+            return !this.isRequired;
         }
         for (var verification : tests.values()) {
             if (!verification.test(input)) {
