@@ -16,10 +16,8 @@ public final class MapSchema extends BaseSchema<Map> {
     }
 
     public MapSchema shape(Map<String, BaseSchema<String>> schemesSet) {
-        Predicate<Map> shapeScheme = mapToVerify -> {
-            return schemesSet.keySet().stream().allMatch(key -> schemesSet.get(key).isValid(
-                    (String) mapToVerify.get(key)));
-        };
+        Predicate<Map> shapeScheme = mapToVerify -> schemesSet.keySet().stream().allMatch(key ->
+                schemesSet.get(key).isValid((String) mapToVerify.get(key)));
 
         super.addVerificator("shape", shapeScheme);
         return this;
